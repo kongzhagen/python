@@ -26,7 +26,7 @@ class UserProfile(models.Model):
     school = models.ForeignKey('School')
 
     def __unicode__(self):
-        return self.user
+        return self.name
 
 class Customer(models.Model):
     qq = models.CharField(max_length=64,unique=True)
@@ -136,7 +136,3 @@ class StudyRecord(models.Model):
     note = models.CharField(u"备注", max_length=255, blank=True, null=True)
     def __unicode__(self):
         return '%s,%s,%s' % (self.course_record, self.student, self.record)
-
-
-
-

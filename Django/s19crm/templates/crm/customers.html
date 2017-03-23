@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+
+{% block page-header %}
+客户信息列表
+{% endblock%}}
+
+{% block page-content %}}
+{{ cus_list}}
+
+<table class="table table-bordered">
+  <thead>
+        <tr>
+            <td>ID</td>
+            <td>QQ</td>
+            <td>姓名</td>
+            <td>渠道</td>
+            <td>咨询课程</td>
+            <td>课程类型</td>
+            <td>客户备注</td>
+            <td>状态</td>
+            <td>课程顾问</td>
+            <td>日期</td>
+        </tr>
+  </thead>
+    <tbody>
+        {% for customer in cus_list  %}
+        <td>{{customer.id}}</td>
+    </tbody>
+</table>
+
+{% endblock %}}

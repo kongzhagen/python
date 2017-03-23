@@ -19,4 +19,5 @@ import views
 
 urlpatterns = [
     url(r'^$', views.dashboard),
+    url(r'^customers/', views.customers),
 ]
