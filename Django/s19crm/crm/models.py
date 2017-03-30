@@ -34,7 +34,7 @@ class Customer(models.Model):
     phone = models.BigIntegerField(blank=True,null=True)
     course = models.ForeignKey('Course')
 
-    type = models.CharField(max_length=64,choices=course_type_choices,default='offline_weekend')
+    type = models.CharField(max_length=64,choices=course_type_choices)
     consult_memo = models.TextField()
     source_type_choices = (('qq',u"qq群"),
                    ('referral',u"内部转介绍"),
@@ -72,7 +72,6 @@ class CustomerTrackRecord(models.Model):
     status = models.IntegerField(u"状态",choices=status_choices)
     def __unicode__(self):
         return self.customer
-
 
 class Course(models.Model):
     name = models.CharField(max_length=64,unique=True)

@@ -1,12 +1,11 @@
 
 {% extends 'base.html' %}
-
+{% load pagetag %}
 {% block page-header %}
 客户信息列表
-{% endblock%}}
+{% endblock %}}
 
-{% block page-content %}}
-{{ cus_list}}
+{% block page-content %}
 
 <table class="table table-bordered">
   <thead>
@@ -23,10 +22,54 @@
             <td>日期</td>
         </tr>
   </thead>
-    <tbody>
-        {% for customer in cus_list  %}
-        <td>{{customer.id}}</td>
-    </tbody>
+        <tbody>
+            {% for customer in cus_list  %}
+                <tr>
+                    <td>{{customer.id}}</td>
+                    <td>{{customer.qq}}</td>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.source_type|kong_upper}}</td>
+                    <td>{{customer.course}}</td>
+                    <td>{{customer.get_type_display}}</td>
+                    <td>{{customer.consult_memo|truncatechars:10}}</td>
+                    <td class="{{ customer.status }}">{{customer.get_status_display}}</td>
+                    <td>{{customer.consultant}}</td>
+                    <td>{{customer.date}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
 </table>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+      {% if cus_list.has_previous %}
+          <li>
+              <a href="?page={{ cus_list.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+          </li>
+      {% endif %}
+
+{#    {% for pg in cus_list.paginator.page_range %}#}
+{#        {% if cus_list.number == pg %}#}
+{#            <li class="active"><a href="?page={{ pg }}">{{ pg }}</a></li>#}
+{#        {% else %}#}
+{#            <li><a href="?page={{ pg }}">{{ pg }}</a></li>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+
+    {%  for pg in cus_list.paginator.page_range %}
+        {% circle_page cus_list.number pg %}
+    {% endfor %}
+
+    {% if cus_list.has_next %}
+        <li>
+          <a href="?page={{ cus_list.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        {% endif %}
+  </ul>
+</nav>
 
 {% endblock %}}

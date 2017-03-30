@@ -1,0 +1,12 @@
+.signed{
+    background-color: green;
+}
+.unregistered{
+    background-color: yellow;
+}
+.graduated{
+    background-color: gray;
+}
+.drop-off{
+    background-color: white;
+}
