@@ -25,7 +25,7 @@
         <tbody>
             {% for customer in cus_list  %}
                 <tr>
-                    <td>{{customer.id}}</td>
+                    <td><a href="/crm/customers/{{ customer.id }}/">{{customer.id}}</a></td>
                     <td>{{customer.qq}}</td>
                     <td>{{customer.name}}</td>
                     <td>{{customer.source_type|kong_upper}}</td>
@@ -49,14 +49,6 @@
               </a>
           </li>
       {% endif %}
-
-{#    {% for pg in cus_list.paginator.page_range %}#}
-{#        {% if cus_list.number == pg %}#}
-{#            <li class="active"><a href="?page={{ pg }}">{{ pg }}</a></li>#}
-{#        {% else %}#}
-{#            <li><a href="?page={{ pg }}">{{ pg }}</a></li>#}
-{#        {% endif %}#}
-{#    {% endfor %}#}
 
     {%  for pg in cus_list.paginator.page_range %}
         {% circle_page cus_list.number pg %}
