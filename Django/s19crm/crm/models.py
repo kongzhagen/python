@@ -56,6 +56,9 @@ class Customer(models.Model):
     def __unicode__(self):
         return '%s(%s)' % (self.qq, self.name)
 
+    class Meta:
+        permissions = (('can_del_customer',u'可删除客户记录'),)
+
 class CustomerTrackRecord(models.Model):
     customer = models.ForeignKey(Customer)
     track_record= models.TextField(u"跟踪记录")

@@ -28,6 +28,8 @@ def customerInfo(request,customer_id):
             baseUrl = "/".join(request.path.split("/")[:-2])
             print baseUrl
             return redirect(baseUrl)
+        else:
+            print form.errors
     else:
         form = forms.customerForm(instance=customer_obj)
     return render(request, 'crm/customers_detail.html', {'cust_info':form})
