@@ -19,6 +19,6 @@ import views
 
 urlpatterns = [
     url(r'^$', views.dashboard),
-    url(r'^customers/$', views.customers),
-    url(r'^customers/(\d+)/$', views.customerInfo),
+    url(r'^customers/$', views.customers, name='customer_list'),
+    url(r'^customers/(\d+)/$', views.customerInfo, name='customer_detail'),
 ]

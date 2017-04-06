@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 import models
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+from permissions import check_permission
 
 # Create your views here.
 def dashboard(request):
@@ -19,6 +20,8 @@ def customers(request):
     return render(request,'crm/customers.html',{"cus_list":customer})
 
 import forms
+from django.core.urlresolvers import resolve
+@check_permission
 def customerInfo(request,customer_id):
     customer_obj = models.Customer.objects.get(pk=customer_id)
     if request.method == 'POST':

@@ -28,6 +28,13 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        permissions = (
+            ('view_customer_list',u"查看客户列表"),
+            ('view_customer_info',u"查看客户详情"),
+            ('edit_own_customer_info',u"修改自己的客户信息"),
+        )
+
 class Customer(models.Model):
     qq = models.CharField(max_length=64,unique=True)
     name = models.CharField(max_length=32,blank=True,null=True)
@@ -55,9 +62,6 @@ class Customer(models.Model):
     date = models.DateField(u'咨询日期', auto_now_add=True)
     def __unicode__(self):
         return '%s(%s)' % (self.qq, self.name)
-
-    class Meta:
-        permissions = (('can_del_customer',u'可删除客户记录'),)
 
 class CustomerTrackRecord(models.Model):
     customer = models.ForeignKey(Customer)
