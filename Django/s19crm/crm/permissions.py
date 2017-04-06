@@ -8,7 +8,7 @@ from django.shortcuts import render,redirect
 perm_dic = {
     'view_customer_list':['customer_list','GET',[]],  # 权限字段(view)，URL,GET,参数
     'view_customer_info':['customer_detail','GET',[]],
-    'edit_own_customer_info':['customer_detail','POST',['test']],
+    'edit_own_customer_info':['customer_detail','POST',['qq','nam']],
 }
 
 def perm_check(*args, **kwargs):
@@ -56,6 +56,7 @@ def perm_check(*args, **kwargs):
         else:
             print "\033[41;1m -------no permission --------\033[0m"
             print request.user,perm_str
+            return False
     else:
         print "\033[41;1m ------no matched permission ----- \033[0m"
 

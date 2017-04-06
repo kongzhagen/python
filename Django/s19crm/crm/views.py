@@ -7,6 +7,7 @@ from permissions import check_permission
 def dashboard(request):
     return render(request,'crm/dashboard.html')
 
+@check_permission
 def customers(request):
     cus_list = models.Customer.objects.all()
     paginator = Paginator(cus_list,2,2)
@@ -26,6 +27,7 @@ def customerInfo(request,customer_id):
     customer_obj = models.Customer.objects.get(pk=customer_id)
     if request.method == 'POST':
         form = forms.customerForm(request.POST, instance=customer_obj)
+        # print request.POST
         if form.is_valid():
             form.save()
             baseUrl = "/".join(request.path.split("/")[:-2])
