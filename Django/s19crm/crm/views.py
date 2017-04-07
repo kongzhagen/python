@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 import models
+import forms
+from django.core.urlresolvers import resolve
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from permissions import check_permission
 
@@ -20,14 +22,12 @@ def customers(request):
         customer = paginator.page(paginator.num_pages)
     return render(request,'crm/customers.html',{"cus_list":customer})
 
-import forms
-from django.core.urlresolvers import resolve
+
 @check_permission
 def customerInfo(request,customer_id):
     customer_obj = models.Customer.objects.get(pk=customer_id)
     if request.method == 'POST':
         form = forms.customerForm(request.POST, instance=customer_obj)
-        # print request.POST
         if form.is_valid():
             form.save()
             baseUrl = "/".join(request.path.split("/")[:-2])

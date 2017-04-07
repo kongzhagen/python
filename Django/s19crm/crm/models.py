@@ -28,9 +28,10 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.name
 
+    # 设置3个权限字段，拥有权限者可操作此表(在admin中授权用户)
     class Meta:
         permissions = (
-            ('view_customer_list',u"查看客户列表"),
+            ('view_customer_list',u"查看客户列表"),  # 权限字段名称及其解释
             ('view_customer_info',u"查看客户详情"),
             ('edit_own_customer_info',u"修改自己的客户信息"),
         )
